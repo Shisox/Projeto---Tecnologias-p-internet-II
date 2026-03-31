@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Inria+Sans:wght@400;700&display=swap');
-
 * {
     margin: 0;
     padding: 0;
@@ -7,91 +5,68 @@
 }
 
 body {
-    font-family: 'Inria Sans', Arial, sans-serif;
-    font-weight: 400;
-    background: #1A1040;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #e0e0e0;
     height: 100vh;
-    width: 100vw;
-    overflow: hidden;
+    display: grid;
+    grid-template-areas: 
+        "header header"
+        "aside main";
+    grid-template-columns: 180px 1fr;
+    grid-template-rows: auto 1fr;
 }
 
-/* PAINEL PRINCIPAL - Ocupa a tela inteira */
-.dashboard {
-    background: white;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    border: none;
-    border-radius: 0;
-    box-shadow: none;
-}
-
-/* CAIXA 1: Cabeçalho (topo, largura total) */
-.dashboard-header {
-    background: #29186B;
-    padding: 20px 30px;
+/* Cabeçalho */
+header {
+    grid-area: header;
+    background: #4a4a4a;
+    padding: 15px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px dashed black;
-}
-
-.welcome {
     color: white;
-    font-size: 20px;
-    font-weight: 400;
+    font-size: 18px;
 }
 
-.logout-btn {
+header a {
     background: white;
-    color: #1A1040;
+    color: #333;
     text-decoration: none;
-    padding: 8px 20px;
-    border-radius: 25px;
-    font-weight: 700;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    padding: 6px 15px;
+    border-radius: 3px;
+    font-size: 14px;
 }
 
-/* CAIXA 2 e 3: Área com menu lateral + conteúdo (ocupa o restante) */
-.dashboard-main {
-    display: flex;
-    flex: 1;
-    min-height: 0;
+header a:hover {
+    background: #ddd;
 }
 
-/* CAIXA 2: Menu lateral (esquerda) - ALTERADO */
-.dashboard-menu {
-    background: #29186B;
-    text-align: center;
-    width: 200px;
-    padding: 20px;
-    border-right: 1px dashed black;
-    font-weight: 700;
-    color: white;  /* Texto branco */
-    overflow-y: auto;
-}
-
-/* CAIXA 3: Conteúdo principal (direita) */
-.dashboard-content {
-    background: white;
-    flex: 1;
-    text-align: center;
-    padding: 20px;
-    color: black;
+/* Menu lateral */
+aside {
+    grid-area: aside;
+    background: #6b6b6b;
+    padding: 15px;
+    color: white;
     font-size: 16px;
+}
+
+/* Conteúdo principal */
+main {
+    grid-area: main;
+    background: white;
+    padding: 20px;
+    color: #333;
+    font-size: 14px;
     overflow-y: auto;
 }
 
-/* TELA DE LOGIN - continua como caixa centralizada */
+/* TELA DE LOGIN */
 .login-container {
     background: white;
-    width: 100%;
-    max-width: 400px;
-    padding: 40px;
-    border: 1px dashed black;
-    border-radius: 25px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    width: 320px;
+    padding: 30px;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     position: absolute;
     top: 50%;
     left: 50%;
@@ -100,10 +75,10 @@ body {
 
 .login-container h1 {
     text-align: center;
-    margin-bottom: 30px;
-    color: #1A1040;
-    font-size: 28px;
-    font-weight: 700;
+    margin-bottom: 25px;
+    color: #333;
+    font-size: 24px;
+    font-weight: normal;
 }
 
 .login-container form {
@@ -112,50 +87,44 @@ body {
 
 .login-container input {
     width: 100%;
-    padding: 12px;
+    padding: 8px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
-    border-radius: 25px;
-    font-family: 'Inria Sans', Arial, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 14px;
 }
 
-.login-container input[type="text"],
-.login-container input[type="password"] {
-    width: 100%;
-}
-
 .login-container input[type="submit"] {
-    background: #29186B;
+    background: #4a4a4a;
     color: white;
     border: none;
-    font-weight: 700;
+    padding: 8px;
     cursor: pointer;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-    margin-top: 10px;
+    margin-top: 5px;
+}
+
+.login-container input[type="submit"]:hover {
+    background: #333;
 }
 
 /* Responsividade */
 @media (max-width: 600px) {
-    .dashboard-main {
-        flex-direction: column;
+    body {
+        grid-template-areas: 
+            "header"
+            "aside"
+            "main";
+        grid-template-columns: 1fr;
     }
     
-    .dashboard-menu {
-        width: 100%;
-        border-right: none;
-        border-bottom: 1px dashed black;
-    }
-    
-    .dashboard-header {
+    header {
         flex-direction: column;
-        gap: 15px;
+        gap: 10px;
         text-align: center;
     }
     
     .login-container {
         width: 90%;
-        margin: 20px;
-        padding: 30px 20px;
+        padding: 20px;
     }
 }

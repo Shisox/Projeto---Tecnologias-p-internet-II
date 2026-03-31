@@ -1,8 +1,10 @@
 <html>
     <link rel="stylesheet" href="style.css">
-    <div id="titulo"> <title>Site</title></div>
+    <head>
+        <div id="titulo"> <title>Site</title></div>
+    </head>
         <body>
-            <h1>Site 01</h1>
+            <h1>Site 01 - Teste de branch</h1>
             <form method="post" action="login.php">
                 CPF: <input type="text" name="cpf"> <br>
                 SENHA: <input type="password" name="senha"> <br>

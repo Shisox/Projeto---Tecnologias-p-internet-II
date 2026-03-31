@@ -1,9 +1,26 @@
 <?php
     include("valida.php");
-    echo 'Olá, '.$_SESSION['nome'].'!';
 ?>
 <html>
     <link rel="stylesheet" href="style.css">
-    <hr>
-    <a href="sair.php">Sair</a>
+    <head>
+        <title>Site</title>
+    </head>
+    <body>
+        <div class="dashboard">
+            <div class="dashboard-header">
+                <div class="welcome">Olá, <?php echo $_SESSION['nome']; ?>!</div>
+                <a href="sair.php" class="logout-btn">Sair</a>
+            </div>
+            
+            <div class="dashboard-main">
+                <div class="dashboard-menu">
+                    Menu
+                </div>
+                <div class="dashboard-content">
+                    Conteúdo
+                </div>
+            </div>
+        </div>
+    </body>
 </html>

@@ -4,6 +4,7 @@
         <title>Site</title>
     </head>
         <body>
+            <!-- caixa central com login -->
             <div class="login-container">
                 <h1>Site</h1>
                 <form method="post" action="login.php">

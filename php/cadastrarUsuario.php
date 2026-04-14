@@ -1,4 +1,4 @@
-git <?php
+<?php
     include("valida.php");
 ?>
 <html>
@@ -10,7 +10,7 @@ git <?php
         <div class="dashboard">
             <!-- cabeçalho -->
             <div class="dashboard-header">
-                <div class="welcome">Olá, <?php echo $_SESSION['nome']; ?>!</div>
+                <div class="welcome">Olá, <?php echo $_SESSION['nome'];?>!</div>
                 <!-- botão de sair -->
                 <a href="sair.php" class="logout-btn">Sair</a>
             </div>

@@ -18,6 +18,7 @@
             <div class="dashboard-main">
                 <!-- menu lateral -->
                 <div class="dashboard-menu">
+                    <h2>Menu</h2>
                     <a href="cadastrarUsuario.php"  class="menu-link">Cadastrar Usuário</a>
                 </div>
                 <!-- conteúdo central -->

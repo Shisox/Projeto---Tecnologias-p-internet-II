@@ -22,11 +22,9 @@
                 </div>
                 <!-- Conteúdo principal -->
                 <div class="dashboard-content">
-                    <h2>Cadastro de Usuários</h2>
-                    <form action="inserirUsuario.php" method="post">
-                        CPF:<input type="text" name="cpf"><br>
-                        Nome: <input type="text" name="nome"><br>
-                        Senha: <input type="text" name="senha"><br>
+                    <h2>Cadastro de Gêneros</h2>
+                    <form action="inserirGenero.php" method="post">
+                        Descrição: <input type="text" name="descricao"><br>
                         <input type="submit" value="Inserir">
                     </form>
                     <hr>
@@ -34,14 +32,12 @@
                     <?php include("conexao.php");?>
                     <table>
                         <tr>
-                        <td>CPF</td>
-                        <td>Nome</td>
-                        <td>Senha</td>
+                        <td>Descrição</td>
                         <td>Alternar</td>
                         <td>Apagar</td>
                     </tr>
                 <?php       
-                    $sql = "select * from usuarios";
+                    $sql = "select * from generos";
                     $stmt = $conn->prepare($sql);
 
                     if($stmt){
@@ -52,13 +48,11 @@
                             while($row = $result->fetch_assoc()){
                             ?>
                             <tr>
-                                <td><?=  $row['cpf']; ?></td>
-                                <td><?=  $row['nome']; ?></td>
-                                <td><?=  $row['senha']; ?></td>
+                                <td><?=  $row['descricao']; ?></td>
                                 <td>Alterar</td>
                                 <td>
-                                    <form method="post" action="apagarUsuario.php">
-                                        <input type="hidden" value="<?= $row['cpf'];?>" name="cpf">
+                                    <form method="post" action="apagarGenero.php">
+                                        <input type="hidden" value="<?= $row['genero'];?>" name="genero">
                                         <input type="submit" value="Apagar">
                                     </form>
                                 </td>

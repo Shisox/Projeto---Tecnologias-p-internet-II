@@ -20,6 +20,7 @@
                 <div class="dashboard-menu">
                     <h2>Menu</h2>
                     <a href="cadastrarUsuario.php"  class="menu-link">Cadastrar Usuário</a>
+                    <a href="cadastrarGenero.php"  class="menu-link">Cadastrar Gênero</a>
                 </div>
                 <!-- conteúdo central -->
                 <div class="dashboard-content">

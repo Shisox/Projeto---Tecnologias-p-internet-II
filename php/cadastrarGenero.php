@@ -28,12 +28,12 @@
                         <input type="submit" value="Inserir">
                     </form>
                     <hr>
-                    <h2>Lista de Usuários</h2>
+                    <h2>Lista de Gêneros</h2>
                     <?php include("conexao.php");?>
                     <table>
                         <tr>
                         <td>Descrição</td>
-                        <td>Alternar</td>
+                        <td>Alterar</td>
                         <td>Apagar</td>
                     </tr>
                 <?php       
@@ -48,8 +48,11 @@
                             while($row = $result->fetch_assoc()){
                             ?>
                             <tr>
-                                <td><?=  $row['descricao']; ?></td>
-                                <td>Alterar</td>
+                                <form action="alterarGenero.php" method="post">
+                                    <input type="hidden" name="descricaoAnterior" value="<?= $row['descricao'];?>">
+                                    <td><input type="text" value="<?=$row['descricao'];?>" name="descricao"></td>
+                                    <td><input type="submit" value="Alterar" id="alterar"></td>
+                                </form>
                                 <td>
                                     <form method="post" action="apagarGenero.php">
                                         <input type="hidden" value="<?= $row['genero'];?>" name="genero">

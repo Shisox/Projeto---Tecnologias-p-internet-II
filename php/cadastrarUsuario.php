@@ -52,16 +52,19 @@
                             while($row = $result->fetch_assoc()){
                             ?>
                             <tr>
-                                <td><?=  $row['cpf']; ?></td>
-                                <td><?=  $row['nome']; ?></td>
-                                <td><?=  $row['senha']; ?></td>
-                                <td>Alterar</td>
-                                <td>
-                                    <form method="post" action="apagarUsuario.php">
-                                        <input type="hidden" value="<?= $row['cpf'];?>" name="cpf">
-                                        <input type="submit" value="Apagar">
+                                <form action="alterarUsuario.php" method="post">
+                                    <input type="hidden" name="cpfAnterior" value="<?=$row['cpf'];?>">
+                                    <td><input type="text" value="<?=$row['cpf'];?>" name="cpf"></td>
+                                    <td><input type="text" value="<?=$row['nome'];?>" name="nome"></td>
+                                    <td><input type="password" value="<?=$row['senha'];?>" name="senha"></td>
+                                    <td><input type="submit" value="Alterar" id="alterar"></td>
                                     </form>
-                                </td>
+                                    <td>
+                                        <form method="post" action="apagarUsuario.php">
+                                            <input type="hidden" value="<?= $row['cpf'];?>" name="cpf">
+                                            <input type="submit" value="Apagar">
+                                        </form>
+                                    </td>
                             </tr>
                             <?php
                             }

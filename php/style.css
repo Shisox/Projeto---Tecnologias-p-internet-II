@@ -203,10 +203,31 @@ body {
     cursor: pointer;
     width: auto;
     margin: 0;
+    transition: all 0.3s ease-in-out;
 }
 
 .dashboard-content td input[type="submit"]:hover {
     background: #c82333;
+}
+
+/* Botão Alterar - Amarelo */
+.dashboard-content td form input[type="submit"]#alterar,
+.dashboard-content td input[type="submit"]#alterar {
+    background: #E6A817;  /* Amarelo escuro */
+    border: none;
+    padding: 5px 15px;
+    border-radius: 5px;
+    font-weight: 400;
+    font-size: 12px;
+    cursor: pointer;
+    width: auto;
+    margin: 0;
+    transition: all 0.3s ease-in-out;
+}
+
+.dashboard-content td form input[type="submit"]#alterar:hover,
+.dashboard-content td input[type="submit"]#alterar:hover {
+    background: #CC8F00;  /* Tom mais escuro de amarelo no hover */
 }
 
 /* Link "Alterar" na tabela */

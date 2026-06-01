@@ -19,6 +19,7 @@
                     <h2>Menu</h2>
                     <a href="cadastrarUsuario.php" class="menu-link">Cadastrar Usuário</a>
                     <a href="cadastrarGenero.php"  class="menu-link">Cadastrar Gênero</a>
+                    <a href="cadastrarFilme.php"  class="menu-link">Cadastrar Filme</a>
                 </div>
                 <!-- Conteúdo principal -->
                 <div class="dashboard-content">

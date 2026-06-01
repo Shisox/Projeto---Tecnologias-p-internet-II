@@ -23,16 +23,40 @@
                 </div>
                 <!-- Conteúdo principal -->
                 <div class="dashboard-content">
-                    <h2>Cadastro de Usuários</h2>
-                    <form action="inserirUsuario.php" method="post">
-                        CPF:<input type="text" name="cpf"><br>
-                        Nome: <input type="text" name="nome"><br>
-                        Senha: <input type="text" name="senha"><br>
+                    <h2>Cadastro de Filmes</h2>
+                    <form action="inserirFilme.php" method="post">
+                        Nome:<input type="text" name="nome"><br>
+                        Ano: <input type="text" name="ano"><br>
+                        Gênero: 
+                        <?php include("conexao.php");?>
+                        <select name="genero">
+                            <option value="">Selecione um gênero</option>
+                            <?php       
+                                $sql = "select * from generos";
+                                $stmt = $conn->prepare($sql);
+
+                                if($stmt){
+                                    $stmt->execute();
+                                    $result = $stmt->get_result();
+
+                                    if($result->num_rows > 0){
+                                        while($row = $result->fetch_assoc()){
+                                            ?>
+                                            <option value="<?= $row['genero'];?>"><?=$row['descricao'];?></option>
+                                            <?php
+
+                                        }
+                                    }
+                                }
+                                ?>
+                        </select>            
+
+                        <br>
                         <input type="submit" value="Inserir">
                     </form>
                     <hr>
-                    <h2>Lista de Usuários</h2>
-                    <?php include("conexao.php");?>
+                    <h2>Lista de Filmes</h2>
+                    
                     <table>
                         <tr>
                         <td>CPF</td>

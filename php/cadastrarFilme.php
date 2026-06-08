@@ -59,14 +59,14 @@
                     
                     <table>
                         <tr>
-                        <td>CPF</td>
                         <td>Nome</td>
-                        <td>Senha</td>
+                        <td>Ano</td>
+                        <td>Gênero</td>
                         <td>Alternar</td>
                         <td>Apagar</td>
                     </tr>
                 <?php       
-                    $sql = "select * from usuarios";
+                    $sql = "select f.filme,f.ano,f.nome,g.genero,g.descricao from filmes f join generos g on (g.genero=f.genero)";
                     $stmt = $conn->prepare($sql);
 
                     if($stmt){
@@ -77,16 +77,39 @@
                             while($row = $result->fetch_assoc()){
                             ?>
                             <tr>
-                                <form action="alterarUsuario.php" method="post">
-                                    <input type="hidden" name="cpfAnterior" value="<?=$row['cpf'];?>">
-                                    <td><input type="text" value="<?=$row['cpf'];?>" name="cpf"></td>
+                                <form method="post" action="alterarFilme.php">
+                                    <input type="hidden" name="filme" value="<?=$row['filme'];?>">
                                     <td><input type="text" value="<?=$row['nome'];?>" name="nome"></td>
-                                    <td><input type="password" value="<?=$row['senha'];?>" name="senha"></td>
+                                    <td><input type="text" value="<?=$row['ano'];?>" name="ano"></td>
+                                    <td><select name="genero">
+                                            <option value="">Selecione um gênero</option>     
+                                            <?php  
+                                                $sqlGeneros = "select * from generos";
+                                                $stmtGeneros = $conn->prepare($sqlGeneros);
+
+                                                if($stmtGeneros){
+                                                    $stmtGeneros->execute();
+                                                    $resultGeneros = $stmtGeneros->get_result();
+
+                                                    if($resultGeneros->num_rows > 0){
+                                                        while($rowGeneros = $resultGeneros->fetch_assoc()){
+                                                            ?>
+                                                            <option value="<?= $rowGeneros['genero']; ?>" <?= ($rowGeneros['genero'] == $row['genero']) ? 'selected' : ''; ?>><?= $rowGeneros['descricao'];?></option>
+                                                            <?php
+
+                                                        }
+                                                    }
+                                                }
+                                            ?>
+                                        </select>    
+                                    </select>
+                                    
+                                    </td>
                                     <td><input type="submit" value="Alterar" id="alterar"></td>
                                     </form>
                                     <td>
-                                        <form method="post" action="apagarUsuario.php">
-                                            <input type="hidden" value="<?= $row['cpf'];?>" name="cpf">
+                                        <form method="post" action="apagarFilme.php">
+                                            <input type="hidden" value="<?= $row['filme'];?>" name="filme">
                                             <input type="submit" value="Apagar">
                                         </form>
                                     </td>

@@ -24,8 +24,8 @@
                 <!-- Conteúdo principal -->
                 <div class="dashboard-content">
                     <h2>Cadastro de Gêneros</h2>
-                    <form action="inserirGenero.php" method="post">
-                        Descrição: <input type="text" name="descricao"><br>
+                    <form action="inserirGenero.php" method="post" onsubmit="return validarFormulario()">
+                        Descrição: <input type="text" name="descricao" id="descricao"><br>
                         <input type="submit" value="Inserir">
                     </form>
                     <hr>
@@ -46,33 +46,62 @@
                         $result = $stmt->get_result();
 
                         if($result->num_rows > 0){
+                            $contador = 0;
                             while($row = $result->fetch_assoc()){
+                                $contador++;
                             ?>
                             <tr>
-                                <form action="alterarGenero.php" method="post">
+                                <form action="alterarGenero.php" method="post" onsubmit="return validarAlteracao<?=$contador;?>()">
                                     <input type="hidden" name="descricaoAnterior" value="<?= $row['descricao'];?>">
-                                    <td><input type="text" value="<?=$row['descricao'];?>" name="descricao"></td>
+                                    <td><input type="text" value="<?=$row['descricao'];?>" name="descricao" id="descricao<?=$contador;?>"></td>
                                     <td><input type="submit" value="Alterar" id="alterar"></td>
                                 </form>
                                 <td>
-                                    <form method="post" action="apagarGenero.php">
+                                    <form method="post" action="apagarGenero.php" onsubmit="return confirm('Tem certeza que deseja apagar este gênero?');">
                                         <input type="hidden" value="<?= $row['genero'];?>" name="genero">
                                         <input type="submit" value="Apagar">
                                     </form>
                                 </td>
                             </tr>
+                            <script>
+                            function validarAlteracao<?=$contador;?>() {
+                                var descricao = document.getElementById('descricao<?=$contador;?>').value.trim();
+                                
+                                if (descricao === '') {
+                                    alert('Por favor, preencha com a descrição!');
+                                    document.getElementById('descricao<?=$contador;?>').focus();
+                                    return false;
+                                }
+                                
+                                return true;
+                            }
+                            </script>
                             <?php
                             }
                         } else {
-                            echo 'Nenhum dado encontrado!';
+                            echo '<tr><td colspan="3">Nenhum dado encontrado!</td></tr>';
                         }
                     } else {
-                        echo 'Erro na SQL!';
+                        echo '<tr><td colspan="3">Erro na SQL!</td></tr>';
                     }
                 ?>
                 </table>
                 </div>
             </div>
         </div>
+        
+        <script>
+        function validarFormulario() {
+            var descricao = document.getElementById('descricao').value.trim();
+            
+            if (descricao === '') {
+                alert('Por favor, insira a descrição!');
+                document.getElementById('descricao').focus();
+                return false;
+            }
+            
+            return true;
+        }
+        </script>
     </body>
 </html>
